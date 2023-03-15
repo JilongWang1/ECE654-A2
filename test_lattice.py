@@ -54,3 +54,10 @@ class TestLattice:
                 ['T']]
 
         self.general_test('TestCases/Test3.py', ans2)
+    
+    def test4(self):
+        ans2 = [['O', 'B', 'B', 'B'],
+                ['E', 'B', 'B', 'B'],
+                ['E', 'O', 'O', 'O']]
+
+        self.general_test('TestCases/Test3.py', ans2)
