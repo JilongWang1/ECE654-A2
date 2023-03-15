@@ -4,7 +4,7 @@ import lattice_analysis
 class TestLattice:
     def general_test(self, filepath, ans):
         self.eomap = {'T': 0, 'E': 1, 'O': 2, 'B': 3}
-        ans_dic = self.counting_anss(ans)
+        ans_dic = self.counting_ans(ans)
 
         solver = lattice_analysis.Lattice(filepath)
         solver.fix_solve()
