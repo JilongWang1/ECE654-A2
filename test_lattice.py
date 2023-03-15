@@ -16,7 +16,7 @@ class TestLattice:
 
     def counting_ans(self, ans):
         ans_dic = {}
-        for ans_line in ans_dic:
+        for ans_line in ans:
             line_dic = [0] * 4
             for c in ans_line:
                 line_dic[self.eomap[c]] += 1
