@@ -2,10 +2,8 @@ import lattice_analysis
 
 
 class TestLattice:
-    def __init__(self):
-        self.eomap = {'T': 0, 'E': 1, 'O': 2, 'B': 3}
-
     def general_test(self, filepath, ans):
+        self.eomap = {'T': 0, 'E': 1, 'O': 2, 'B': 3}
         ans_dic = self.countingAns(ans)
 
         solver = lattice_analysis.Lattice(filepath)
@@ -21,7 +19,7 @@ class TestLattice:
         for ans_line in ans_dic:
             line_dic = [0] * 4
             for c in ans_line:
-                line_dic[self.eomao[c]] += 1
+                line_dic[self.eomap[c]] += 1
             line_dic = tuple(line_dic)
 
             if line_dic in ans_dic:
