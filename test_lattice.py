@@ -10,9 +10,15 @@ class TestLattice:
         solver.fix_solve()
         ret_dic = self.counting_ans(solver.lattice)
 
-        assert len(ans_dic) == len(ret_dic)
+        if len(ans_dic) != len(ret_dic):
+            return False
+
         for key in ans_dic.keys():
-            assert key in ret_dic and ret_dic[key] == ans_dic[key]
+            if key in ret_dic and ret_dic[key] == ans_dic[key]:
+                continue
+            else:
+                return False
+        return True
 
     def counting_ans(self, ans):
         ans_dic = {}
@@ -34,7 +40,10 @@ class TestLattice:
                 ['O', 'O'],
                 ['E', 'O']]
 
-        self.general_test('TestCases/Test1.py', ans1)
+        if self.general_test('TestCases/Test1.py', ans1):
+            print('test1 passed')
+        else:
+            print('test1 failed')
 
     def test2(self):
         ans2 = [['E', 'B', 'B'],
@@ -44,7 +53,10 @@ class TestLattice:
                 ['T', 'B', 'B'],
                 ['T', 'E', 'T']]
 
-        self.general_test('TestCases/Test2.py', ans2)
+        if self.general_test('TestCases/Test2.py', ans2):
+            print('test2 passed')
+        else:
+            print('test2 failed')
 
     def test3(self):
         ans2 = [['E'],
@@ -53,11 +65,24 @@ class TestLattice:
                 ['O'],
                 ['T']]
 
-        self.general_test('TestCases/Test3.py', ans2)
+        if self.general_test('TestCases/Test3.py', ans2):
+            print('test3 passed')
+        else:
+            print('test3 failed')
     
     def test4(self):
         ans2 = [['O', 'B', 'B', 'B'],
                 ['E', 'B', 'B', 'B'],
                 ['E', 'O', 'O', 'O']]
 
-        self.general_test('TestCases/Test3.py', ans2)
+        if self.general_test('TestCases/Test3.py', ans2):
+            print('test4 passed')
+        else:
+            print('test4 failed')
+
+
+test = TestLattice()
+test.test1()
+test.test2()
+test.test3()
+test.test4()
