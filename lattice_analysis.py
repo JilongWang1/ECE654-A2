@@ -13,7 +13,8 @@ class Lattice:
         self.counting()
         self.lattice = [['B'] * self.var_num for _ in range(len(self.all_block))]
         self.all_var = '\t' + '\t'.join(sorted(list(self.var.keys()), key = lambda x: self.var[x]))
-        print('For program at', checking_path, ':')
+        with open('lattice_log.txt', 'a') as file:
+            file.write('For program at ' + checking_path + ':\n')
 
     # counting the number of blocks and variables and put them in maps
     def counting(self):
@@ -62,22 +63,21 @@ class Lattice:
     # iteratively solving the fixpoint
     def fix_solve(self):
         step_count = 0
-        print('step 0 :')
-        self.print_lattice()
+        self.print_lattice(0)
 
         while self.step():
             step_count += 1
-            print('step', step_count, ':')
-            self.print_lattice()
+            self.print_lattice(step_count)
             None
         print('reached a fix point')
 
-    def print_lattice(self):
-        print(self.all_var)
-        for block, line in zip(self.all_block, self.lattice):
-            print(block.at(), '\t', end='')
-            print('\t'.join(line))
-        print()
+    def print_lattice(self, step_index):
+        with open('lattice_log.txt', 'a') as file:
+            file.write(self.all_var + '\n')
+            for block, line in zip(self.all_block, self.lattice):
+                file.write(block.at() + '\t')
+                file.write('\t'.join(line) + '\n')
+            print()
 
     # one step solving the fixpoint, return if any change is made
     def step(self):
